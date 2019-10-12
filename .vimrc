@@ -74,10 +74,11 @@ xnoremap p pgvy
 
 
 " see https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
-execute "set <A-j>=\ej"
-execute "set <A-h>=\eh"
-execute "set <A-k>=\ek"
-execute "set <A-l>=\el"
+" Not needed in nvim:
+"execute "set <A-j>=\ej"
+"execute "set <A-h>=\eh"
+"execute "set <A-k>=\ek"
+"execute "set <A-l>=\el"
 "nnoremap <M-j> j
 map <silent> <A-l> <C-w><
 map <silent> <A-j> <C-W>-
@@ -105,3 +106,40 @@ autocmd InsertLeave * redraw!
 " COC autocompletion trigger
 " (https://stackoverflow.com/questions/23189568/control-space-vim-key-binding-in-normal-mode-does-not-work)
 inoremap <silent><expr> <NUL> coc#refresh()
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use U to show documentation in preview window
+nnoremap <silent> U :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
+" File search
+" find files and populate the quickfix list
+fun! FindFiles(filename)
+  let error_file = tempname()
+  silent exe '!find . -name "*'.a:filename.'*" | xargs file | sed "s/:/:1:/" > '.error_file
+  set errorformat=%f:%l:%m
+  exe "cfile ". error_file
+  copen
+  call delete(error_file)
+endfun
+command! -nargs=1 FindFile call FindFiles(<q-args>)
+" find text in folder and populate the quickfix list
+fun! FindText(filename)
+  let error_file = tempname()
+  silent exe '!grep -r -l "'.a:filename.'" | xargs file | sed "s/:/:1:/" > '.error_file
+  set errorformat=%f:%l:%m
+  exe "cfile ". error_file
+  copen
+  call delete(error_file)
+endfun
+command! -nargs=1 FindText call FindText(<q-args>)

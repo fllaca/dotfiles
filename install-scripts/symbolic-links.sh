@@ -10,12 +10,17 @@ function _link() {
 	local target=$1
 	local link=$2
 	info "Creating link '${link}' with target '${target}'"
+	mkdir -p $(dirname $link)
 	rm -f ${link} && ln -s ${target} ${link}
 
 }
 
 info "Creating Symbolic links"
 _link ${dotfiles_dir}/.vimrc $HOME/.vimrc
+_link ${dotfiles_dir}/.vimrc $HOME/.config/nvim/init.vim
+_link $HOME/.vim/bundle $HOME/.config/nvim/bundle
+_link $HOME/.vim/autoload $HOME/.config/nvim/autoload
+_link $HOME/.vim/colors $HOME/.config/nvim/colors
 _link ${dotfiles_dir}/.gitconfig $HOME/.gitconfig
 _link ${dotfiles_dir}/.tmux.conf $HOME/.tmux.conf
 _link ${dotfiles_dir}/.zshrc $HOME/.zshrc
