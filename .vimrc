@@ -1,12 +1,12 @@
 execute pathogen#infect()
 
 filetype plugin on
-filetype on 
+filetype on
 filetype plugin indent on
 
 """""""""""""""""""""""
 " Synaxt Colors
-"""""""""""""""""""""" 
+""""""""""""""""""""""
 set t_Co=256
 " Background fix: https://serverfault.com/a/485732
 set t_ut=
@@ -103,9 +103,12 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t/
 autocmd InsertLeave * redraw!
 
-" COC autocompletion trigger
-" (https://stackoverflow.com/questions/23189568/control-space-vim-key-binding-in-normal-mode-does-not-work)
-inoremap <silent><expr> <NUL> coc#refresh()
+""""""""""""""""""""""""""""""""""""
+" COC.nvim autocompletion plugin
+""""""""""""""""""""""""""""""""""""
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -120,6 +123,22 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
+" expand snippet on ENTER: https://github.com/neoclide/coc.nvim/wiki/Using-snippets#snippet-completion
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
+                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
 " File search
