@@ -106,6 +106,7 @@ autocmd InsertLeave * redraw!
 """"""""""""""""""""""""""""""""""""
 " COC.nvim autocompletion plugin
 """"""""""""""""""""""""""""""""""""
+" Useful tips: https://octetz.com/posts/vim-as-go-ide
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
