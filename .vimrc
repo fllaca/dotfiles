@@ -72,6 +72,9 @@ vnoremap // y/<C-R>"<CR>
 " (https://stackoverflow.com/questions/7163947/paste-multiple-times)
 xnoremap p pgvy
 
+" bash interactive mode when doing :!
+set shellcmdflag=-ic
+
 
 " see https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
 " Not needed in nvim:
