@@ -5,7 +5,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/fllaca/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -63,9 +63,12 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  kubectl
+  kube-ps1
 )
 
 source $ZSH/oh-my-zsh.sh
+PROMPT=$PROMPT'$(kube_ps1) '
 
 # User configuration
 
@@ -95,7 +98,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+autoload bashcompinit && bashcompinit
+
 source ~/.bash_aliases
-export GOPATH=$HOME/go
 source ~/.bash_profile
+source <(helm completion zsh)
+source <(gh completion -s zsh)
+
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

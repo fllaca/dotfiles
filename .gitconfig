@@ -1,8 +1,8 @@
 [user]
 	email = ferllarom@gmail.com
 	name = Fernando Llaca
-[credential]
-	helper = store
+;[credential]
+	;helper = store
 [alias]
 	co = checkout
 	br = branch
@@ -19,7 +19,7 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     folder = rev-parse --show-toplevel
     update = merge --ff-only
-    conflicts = diff --diff-filter=U
+    conflicts = diff --diff-filter=U -U0
     br-diff = !sh -c 'git diff ${1:-master}...HEAD' -
     pr = !sh -c \"git fetch origin pull/${1}/head:pr_${1}\"
     history = log --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
@@ -39,5 +39,7 @@
 
 [core]
 	editor = vim
+	#pager = diff-so-fancy | less --tabs=4 -RFX
 #[merge]
 #	ff = false
+#

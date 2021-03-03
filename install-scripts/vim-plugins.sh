@@ -16,9 +16,11 @@ VIM_PLUGIN_LIST="\
 	tomlion/vim-solidity \
 	scrooloose/nerdtree-project-plugin \
 	hashivim/vim-hashicorp-tools \
-	neoclide/coc.nvim
+	neoclide/coc.nvim \
+	junegunn/fzf \
+	junegunn/fzf.vim
 	"
-VIM_PLUGINS_FOLDER=$HOME/.vim/bundle 
+VIM_PLUGINS_FOLDER=$HOME/.vim/bundle
 
 function _pathogen_install() {
 	mkdir -p ${HOME}/.vim/autoload ${VIM_PLUGINS_FOLDER} && \

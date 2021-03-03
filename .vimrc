@@ -18,17 +18,17 @@ syntax on
 " NERDTree
 """""""""""""
 "Start NerdTree if directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" Close if only Nerdtree is open:
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" Show hidden files
-let NERDTreeShowHidden=1
-" Use Ctrl+n to toggle nerdtree:
-map <C-n> :NERDTreeToggle<CR>
-" Custom maps
+""" autocmd StdinReadPre * let s:std_in=1
+""" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+""" " Close if only Nerdtree is open:
+""" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+""" " Show hidden files
+""" let NERDTreeShowHidden=1
+""" " Use Ctrl+n to toggle nerdtree:
+""" map <C-n> :NERDTreeToggle<CR>
+""" " Custom maps
 let mapleader = ","
-nmap <leader>ne :NERDTree<cr>
+""" nmap <leader>ne :NERDTree<cr>
 
 " Save working directory Tree on exit
 " autocmd VimLeavePre * let current_dir=getcwd()
@@ -43,9 +43,12 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+"let g:UltiSnipsExpandTrigger = "<tab>"
+"let g:UltiSnipsJumpForwardTrigger = "<tab>"
+"let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger = '<s-cr>'
 
 """""""""""""
 " Misc
@@ -53,7 +56,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " Search settings
 set ic hls is
 " Show line number and relative numbers
-set number rnu
+" set number rnu
 " reload content
 set autoread
 " Update time lowered to 100ms in order to make GitGutter show the changes
@@ -118,6 +121,12 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 " Use U to show documentation in preview window
 nnoremap <silent> U :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -144,6 +153,16 @@ let g:coc_snippet_next = '<tab>'
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" Disable vim-go warnings
+let g:go_version_warning = 0
+let g:go_rename_command = 'gopls'
+
+
+""""""""""""""""""""""""""""""""""""
+" COC explorer
+""""""""""""""""""""""""""""""""""""
+nmap  e :CocCommand explorer --toggle<CR>
+
 
 " File search
 " find files and populate the quickfix list
@@ -166,3 +185,22 @@ fun! FindText(filename)
   call delete(error_file)
 endfun
 command! -nargs=1 FindText call FindText(<q-args>)
+
+" FZF key bindings
+nnoremap <C-f> :FZF<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-v': 'vsplit' }
+" Text search
+nnoremap <C-g> :Rg<Cr>
+
+" Mirror nerdtree in new tabs
+"autocmd BufWinEnter * NERDTreeMirror
+"autocmd tabenter * NERDTreeMirror
+"autocmd vimenter * NERDTreeProjectLoadFromCWD
+"autocmd vimleave * NERDTreeFocus | NERDTreeProjectCWD
+"
+autocmd FileType go setlocal noet ci pi sts=0 sw=4 ts=4
+
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>

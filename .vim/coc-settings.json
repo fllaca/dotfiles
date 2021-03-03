@@ -4,10 +4,45 @@
       "command": "terraform-lsp",
       "filetypes": ["terraform"],
       "initializationOptions": {}
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+	  "c",
+	  "cpp",
+	  "objc",
+	  "objcpp"
+      ],
+      "rootPatterns": [
+	  ".ccls",
+	  ".vim/",
+	  "compile_commands.json",
+	  ".git/",
+	  ".hg/"
+      ],
+      "initializationOptions": {
+	  "cache": {
+	      "directory": "/tmp/ccls"
+	  } //,
+	  //"clang": {
+	  //  "resourceDir": "/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0"
+          //}
+      }
     }
   },
   "yaml.schemas": {
     "http://json.schemastore.org/ansible-stable-2.7": "*/ansible-*/**.yaml",
     "Kubernetes": "*/cluster-config-*/**.yaml"
-  }
+  },
+  "java.home": "/Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk/Contents/Home",
+  "java.jdt.ls.vmargs": "-Dlog.level=ALL -javaagent:/Users/fllaca/.m2/repository/org/projectlombok/lombok/1.18.0/lombok-1.18.0.jar -Xbootclasspath/a:/Users/fllaca/.m2/repository/org/projectlombok/lombok/1.18.0/lombok-1.18.0.jar",
+  "java.trace.server":"verbose"
 }
