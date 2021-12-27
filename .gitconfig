@@ -16,7 +16,7 @@
     files = !sh -c \"git show --pretty=\"format:\" --name-only $1\"
     # lg = log --graph --oneline --decorate
     # lg = log --graph --all --pretty=format:'%C(yellow)%h%Creset -%C(bold green)%d %Creset%s%C(cyan) %ar %Cblue%an'
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%ae>%Creset' --abbrev-commit --date=relative
     folder = rev-parse --show-toplevel
     update = merge --ff-only
     conflicts = diff --diff-filter=U -U0
