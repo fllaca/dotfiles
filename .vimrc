@@ -204,3 +204,10 @@ nnoremap <C-g> :Rg<Cr>
 autocmd FileType go setlocal noet ci pi sts=0 sw=4 ts=4
 
 autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiffsplit!<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+
+autocmd BufNewFile,BufRead *.yaml.gotmpl set syntax=yaml
