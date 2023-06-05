@@ -7,7 +7,7 @@ info "Installing Debian Packages"
 # Neovim sources
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update
-sudo apt-get install \
+sudo apt-get install -y \
 	git \
 	curl \
 	xclip \
@@ -17,5 +17,6 @@ sudo apt-get install \
 	python3-dev \
 	tmux \
 	neovim \
-	zsh
+	zsh \
+	fzf
 
