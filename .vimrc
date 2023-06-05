@@ -1,4 +1,23 @@
-execute pathogen#infect()
+" execute pathogen#infect()
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+Plug 'SirVer/ultisnips'
+Plug 'fatih/vim-go'
+Plug 'honza/vim-snippets'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdcommenter'
+Plug 'hashivim/vim-hashicorp-tools'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" Initialize plugin system
+call plug#end()
 
 filetype plugin on
 filetype on
@@ -55,8 +74,8 @@ let g:UltiSnipsExpandTrigger = '<s-cr>'
 """""""""""""
 " Search settings
 set ic hls is
-" Show line number and relative numbers
-" set number rnu
+" Show line number and relative numbers (rnu)
+set number " rnu
 " reload content
 set autoread
 " Update time lowered to 100ms in order to make GitGutter show the changes
