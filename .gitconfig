@@ -43,3 +43,11 @@
 #[merge]
 #	ff = false
 #
+[url "git@gitlab_fllaca:gitpen"]
+  insteadOf = git@gitlab.com:gitpen
+
+[url "git@gitlab.com:"]
+  insteadOf = https://gitlab.com/
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
