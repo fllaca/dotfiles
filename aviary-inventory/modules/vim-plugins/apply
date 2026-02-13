@@ -1,0 +1,1 @@
+vim -c 'PlugInstall --sync' -c 'CocInstall -sync coc-yaml coc-json coc-explorer' -c 'qa!'
