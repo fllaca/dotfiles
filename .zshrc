@@ -104,7 +104,7 @@ source ~/.bash_aliases
 source ~/.bash_profile
 source <(helm completion zsh)
 source <(gh completion -s zsh)
-source <(glab completion -s zsh); compdef _glab glab
+# source <(glab completion -s zsh); compdef _glab glab
 
 # Init NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

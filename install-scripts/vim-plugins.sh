@@ -27,6 +27,10 @@ function _pathogen_install() {
 	curl -LSso ${HOME}/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 }
 
+function _vimplug_install() {
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+}
+
 function _git_clone() {
 	local repo_url=$1
 	local repo_folder=$2
@@ -42,6 +46,7 @@ function main() {
 	# Install Pathogen
 	info "Installing Pathogen"
 	_pathogen_install
+	_vimplug_install
 
 	# Download Plugins
 	info "Installing Vim Plugins:"

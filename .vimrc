@@ -227,3 +227,10 @@ nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
 autocmd BufNewFile,BufRead *.yaml.gotmpl set syntax=yaml
+
+" Copilot filetypes
+let g:copilot_filetypes = {
+    \ 'gitcommit': v:true,
+    \ 'markdown': v:true,
+    \ 'yaml': v:true
+    \ }

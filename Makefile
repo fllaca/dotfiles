@@ -9,3 +9,6 @@ links:
 
 
 all: debian-packages vim links
+
+av-apply:
+	sudo av apply --inventory ./aviary-inventory
